@@ -1,4 +1,4 @@
-package com.alibou.ecommerce.exception;
+package com.edureka.ecommerce.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -7,5 +7,6 @@ import lombok.EqualsAndHashCode;
 @Data
 public class CustomerNotFoundException extends RuntimeException {
 
-  private final String msg;
+	private static final long serialVersionUID = 7700377567477083439L;
+	private final String msg;
 }

@@ -1,4 +1,4 @@
-package com.alibou.ecommerce.customer;
+package com.edureka.ecommerce.customer;
 
 import java.util.List;
 
