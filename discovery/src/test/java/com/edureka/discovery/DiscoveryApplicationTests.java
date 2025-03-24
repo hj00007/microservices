@@ -1,4 +1,4 @@
-package com.alibou.discovery;
+package com.edureka.discovery;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

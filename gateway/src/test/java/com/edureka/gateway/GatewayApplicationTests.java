@@ -1,4 +1,4 @@
-package com.alibou.gateway;
+package com.edureka.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
