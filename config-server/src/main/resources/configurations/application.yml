@@ -1,15 +1,20 @@
 eureka:
   instance:
     hostname: localhost
+    instance-id: ${spring.application.name}:${random.value}
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
-name:
-  value: alibou
+    register-with-eureka: true
+    fetch-registry: true
+    
 spring:
   cloud:
     config:
       override-system-properties: false
+  
+zipkin:
+  baseUrl: http://localhost:9411
 
 management:
   tracing:

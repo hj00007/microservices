@@ -1,4 +1,4 @@
-package com.alibou.configserver;
+package com.edureka.configserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
