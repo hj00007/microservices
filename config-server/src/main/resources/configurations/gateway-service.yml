@@ -27,3 +27,6 @@ spring:
           uri: lb:http://PAYMENT-SERVICE
           predicates:
             - Path=/api/v1/payments/**
+            
+zipkin:
+  baseUrl: http://localhost:9411
