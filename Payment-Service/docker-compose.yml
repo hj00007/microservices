@@ -1,0 +1,38 @@
+version: '3'
+services:
+  product-catalog-service:
+    image: payment-service
+    container_name: payment-container
+    build: .
+    ports:
+      - 8094:8094
+    networks:
+      - ecommerce-net
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/ecommerce?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_GENERATE_DDL: true
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQLDialect
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:8192 # Connect to Kafka using its Docker service name
+      SPRING_KAFKA_CONSUMER_GROUP_ID: order_group # Define your Kafka consumer group
+      SPRING_KAFKA_CONSUMER_PROPERTIES_SPRING_JSON_TRUSTED_PACKAGES: "com.capstone.nirosh.e_commerce.Order_Processing_Service.entity"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+
+networks:
+  ecommerce-net:
+    external: true
+
+
+   # volumes:
+   #   - db_data:/var/lib/mysql
+      #- ./src/main/resources/db/product_data.sql:/data/application/init.sql
+    #command: --init-file /data/application/init.sql
+    #healthcheck:
+     # test: [ "CMD-SHELL", "mysqladmin ping -h localhost" ]
+      #interval: 10s
+      #timeout: 5s
+      #retries: 5
