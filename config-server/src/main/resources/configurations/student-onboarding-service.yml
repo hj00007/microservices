@@ -1,0 +1,15 @@
+server:
+  port: 8081
+spring:
+  data:
+    mongodb:
+      # no authetication in local
+      # username:
+      # password:
+      # authentication-database: admin
+      host: localhost
+      port: 27017
+      database: student_onboarding_service
+ 
+zipkin:
+  baseUrl: http://localhost:9411    
