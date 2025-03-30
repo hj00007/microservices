@@ -1,6 +1,8 @@
 package com.edureka.ecomm.service;
 
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,6 @@ import com.edureka.ecomm.entity.OrderItem;
 import com.edureka.ecomm.entity.Orders;
 import com.edureka.ecomm.repo.OrderITemRepository;
 import com.edureka.ecomm.repo.OrderRepository;
-
-import java.util.List;
 
 @Service
 public class OrderService {
@@ -46,25 +46,21 @@ public class OrderService {
 
     @Transactional
     public Orders createOrder(String customerId, OrderItem orderItem) {
-//    	Customer customer = restTemplate.getForObject("http://customer-container:8091/customers/" + customerId, Customer.class);
+    	Customer customer = restTemplate.getForObject("http://customer-container:8091/customers/" + customerId, Customer.class);
     	Orders orders = new Orders();
-//
-//    	if(customer!=null) {
-//    		orders.setCustomer_id(customer.getId());
-//    	}else {
-//    		throw  new ResourceNotFoundException("Customer id: "+customerId+" not found");
-//    	}
-//
-//    	double totalAmount = 0.0;
-//
-//    	Product product = restTemplate.getForObject("http://product-container:8090/products/" + orderItem.getProduct_id(), Product.class);
-//
-//    	if(product!=null) {
-//    		orderItem.setPrice(product.getUnitPrice());
-//    		totalAmount += orderItem.getQuantity() * product.getUnitPrice();
-//    	}else {
-//    		throw  new ResourceNotFoundException("Product id : "+orderItem.getProduct_id()+" not found");
-//    	}
+
+    	if(customer!=null) {
+    		orders.setCustomer_id(customer.getId());
+    	}else {
+    		throw  new ResourceNotFoundException("Customer id: "+customerId+" not found");
+    	}
+
+
+    	Product product = restTemplate.getForObject("http://prodct-service/products/" + orderItem.getProduct_id(), Product.class);
+
+    	if(product ==null ) {
+    		throw  new ResourceNotFoundException("Product id : "+orderItem.getProduct_id()+" not found");
+    	}
     	OrderItem orderItem1=orderITemRepository.save(orderItem);
     	orders.setOrderItems(orderItem1.toString());
     	orders.setTotalAmount(orderItem.getPrice() * orderItem .getQuantity());

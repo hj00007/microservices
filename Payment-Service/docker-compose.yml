@@ -19,7 +19,7 @@ services:
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:8192 # Connect to Kafka using its Docker service name
       SPRING_KAFKA_CONSUMER_GROUP_ID: order_group # Define your Kafka consumer group
-      SPRING_KAFKA_CONSUMER_PROPERTIES_SPRING_JSON_TRUSTED_PACKAGES: "com.capstone.nirosh.e_commerce.Order_Processing_Service.entity"
+      SPRING_KAFKA_CONSUMER_PROPERTIES_SPRING_JSON_TRUSTED_PACKAGES: "com.edureka.ecomm.Order_Processing_Service.entity"
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
 
 networks:

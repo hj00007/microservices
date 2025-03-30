@@ -1,4 +1,4 @@
-package com.capstone.nirosh.e_commerce.Product_Catalog_Service;
+package com.edureka.ecomm;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

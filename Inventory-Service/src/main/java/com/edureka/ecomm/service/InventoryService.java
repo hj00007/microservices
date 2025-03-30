@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import com.edureka.ecomm.ExceptionHandling.ResourceNotFoundException;
 import com.edureka.ecomm.entity.Inventory;
 import com.edureka.ecomm.entity.OrderItem;
 import com.edureka.ecomm.entity.Product;
@@ -43,12 +44,12 @@ public class InventoryService {
 
 	@Transactional
 	public Inventory addOrUpdateInventory(Long productId, Integer quantity) {
-		//Product product = null;
+		Product product = null;
 		//TODO after product service
-		//restTemplate.getForObject("http://prodct-service/products/" + productId, Product.class);
-		//if (product == null) {
-		//	throw new ResourceNotFoundException("Product id :" + productId + " not found");
-		//}
+		product = restTemplate.getForObject("http://prodct-service/products/" + productId, Product.class);
+		if (product == null) {
+			throw new ResourceNotFoundException("Product id :" + productId + " not found");
+		}
 
 		Inventory inventory = inventoryRepository.findByProductId(productId);
 
