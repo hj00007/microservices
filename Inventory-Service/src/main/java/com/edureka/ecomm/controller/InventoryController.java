@@ -18,7 +18,7 @@ import com.edureka.ecomm.service.InventoryService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/inventory")
+@RequestMapping("/api/v1/inventory")
 public class InventoryController {
 
     @Autowired

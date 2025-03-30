@@ -18,7 +18,7 @@ spring:
         - id: inventory-service
           uri: lb:http://INVENTORY-SERVICE
           predicates:
-            - Path=/inventory/**
+            - Path=/api/v1/inventory/**
             
             
 zipkin:
