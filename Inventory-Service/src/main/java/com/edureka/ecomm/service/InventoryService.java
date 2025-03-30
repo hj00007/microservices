@@ -1,10 +1,6 @@
 package com.edureka.ecomm.service;
 
-import com.edureka.ecomm.ExceptionHandling.ResourceNotFoundException;
-import com.edureka.ecomm.entity.Inventory;
-import com.edureka.ecomm.order_proc_serv.entity.OrderItem;
-import com.edureka.ecomm.order_proc_serv.entity.Product;
-import com.edureka.ecomm.repo.InventoryRepository;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
+import com.edureka.ecomm.entity.Inventory;
+import com.edureka.ecomm.entity.OrderItem;
+import com.edureka.ecomm.entity.Product;
+import com.edureka.ecomm.repo.InventoryRepository;
 
 @Service
 @SuppressWarnings("rawtypes")
@@ -71,7 +70,7 @@ public class InventoryService {
 		inventoryRepository.delete(inventory);
 	}
 
-	@KafkaListener(topics = "OrderPlaced", groupId = "order_group")
+	@KafkaListener(topics = "OrderItemsPlaced", groupId = "order_group")
 	public void consumeOrder(OrderItem orderItem) {
 		logger.info("Consumed order items data product ID:" + orderItem.getProduct_id() + " ,quantity: "
 				+ orderItem.getQuantity());
