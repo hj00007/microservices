@@ -1,4 +1,4 @@
-package com.capstone.nirosh.e_commerce.Inventory_Service.ExceptionHandling;
+package com.edureka.ecomm.ExceptionHandling;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

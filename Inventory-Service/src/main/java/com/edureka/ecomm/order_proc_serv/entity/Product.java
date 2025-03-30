@@ -1,4 +1,4 @@
-package com.capstone.nirosh.e_commerce.Order_Processing_Service.entity;
+package com.edureka.ecomm.order_proc_serv.entity;
 
 import lombok.Getter;
 import lombok.Setter;

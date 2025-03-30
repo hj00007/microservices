@@ -1,12 +1,21 @@
-package com.capstone.nirosh.e_commerce.Inventory_Service.controller;
-
-import com.capstone.nirosh.e_commerce.Inventory_Service.entity.Inventory;
-import com.capstone.nirosh.e_commerce.Inventory_Service.service.InventoryService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+package com.edureka.ecomm.controller;
 
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.edureka.ecomm.entity.Inventory;
+import com.edureka.ecomm.service.InventoryService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/inventory")
@@ -30,9 +39,10 @@ public class InventoryController {
         return ResponseEntity.ok(inventory);
     }
 
-    @PostMapping("/product/{productId}")
-    public ResponseEntity<Inventory> addOrUpdateInventory(@PathVariable Long productId, @RequestParam Integer quantity) {
-        Inventory updatedInventory = inventoryService.addOrUpdateInventory(productId, quantity);
+    @PostMapping()
+    public ResponseEntity<Inventory> addOrUpdateInventory(@RequestBody @Valid Inventory request) {
+        Inventory updatedInventory = inventoryService.addOrUpdateInventory(request.getProductId(), 
+        		request.getQuantity());
         return ResponseEntity.ok(updatedInventory);
     }
 

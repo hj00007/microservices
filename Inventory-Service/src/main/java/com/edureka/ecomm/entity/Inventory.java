@@ -1,4 +1,4 @@
-package com.capstone.nirosh.e_commerce.Inventory_Service.entity;
+package com.edureka.ecomm.entity;
 
 import jakarta.persistence.*;
 
@@ -17,6 +17,7 @@ public class Inventory {
 
     @Column(nullable = false)
     private LocalDate lastUpdated;
+    
     private Long productId;
 
     // Getters and Setters

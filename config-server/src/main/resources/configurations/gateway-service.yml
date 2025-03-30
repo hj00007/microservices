@@ -15,6 +15,10 @@ spring:
           uri: lb:http://STUDENT-ONBOARDING-SERVICE
           predicates:
             - Path=/api/v1/students/**
+        - id: inventory-service
+          uri: lb:http://INVENTORY-SERVICE
+          predicates:
+            - Path=/inventory/**
             
             
 zipkin:

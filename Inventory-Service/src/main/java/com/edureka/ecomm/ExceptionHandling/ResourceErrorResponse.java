@@ -1,4 +1,4 @@
-package com.capstone.nirosh.e_commerce.Inventory_Service.ExceptionHandling;
+package com.edureka.ecomm.ExceptionHandling;
 
 public class ResourceErrorResponse {
     private int status;

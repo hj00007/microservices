@@ -1,8 +1,9 @@
-package com.capstone.nirosh.e_commerce.Inventory_Service.repo;
+package com.edureka.ecomm.repo;
 
-import com.capstone.nirosh.e_commerce.Inventory_Service.entity.Inventory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.edureka.ecomm.entity.Inventory;
 
 @Repository
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
