@@ -1,10 +1,10 @@
-package com.edureka.paymentservice.Respository;
+package com.edureka.ecomm.Respository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.edureka.paymentservice.entity.Payment;
+import com.edureka.ecomm.entity.Payment;
 
 import java.util.Optional;
 

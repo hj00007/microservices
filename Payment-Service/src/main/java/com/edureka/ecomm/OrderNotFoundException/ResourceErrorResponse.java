@@ -1,4 +1,4 @@
-package com.edureka.paymentservice.OrderNotFoundException;
+package com.edureka.ecomm.OrderNotFoundException;
 
 public class ResourceErrorResponse {
     private int status;

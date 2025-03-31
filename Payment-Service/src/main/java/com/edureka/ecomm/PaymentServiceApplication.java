@@ -1,8 +1,9 @@
-package com.edureka.paymentservice;
+package com.edureka.ecomm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,6 +16,7 @@ public class PaymentServiceApplication {
 	}
 
 	@Bean
+	@LoadBalanced
 	RestTemplate getRestTemplate(){
 		return new RestTemplate();
 	}

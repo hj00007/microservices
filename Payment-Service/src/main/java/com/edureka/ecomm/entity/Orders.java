@@ -1,4 +1,4 @@
-package com.edureka.paymentservice.orders.entity;
+package com.edureka.ecomm.entity;
 
 import java.time.LocalDate;
 
@@ -17,7 +17,7 @@ public class Orders {
 
 	private Long id;
 
-	private Long customer_id;
+	private String customer_id;
 
 	private String orderItems;
 

@@ -1,4 +1,4 @@
-package com.edureka.paymentservice.entity;
+package com.edureka.ecomm.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

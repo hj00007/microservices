@@ -1,4 +1,4 @@
-package com.edureka.paymentservice.messaging;
+package com.edureka.ecomm.messaging;
 
 import java.util.HashMap;
 import java.util.Map;

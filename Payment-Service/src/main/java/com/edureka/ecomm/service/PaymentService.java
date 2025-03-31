@@ -1,4 +1,4 @@
-package com.edureka.paymentservice.service;
+package com.edureka.ecomm.service;
 
 
 import java.time.LocalDateTime;
@@ -13,10 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import com.edureka.paymentservice.Respository.PaymentRepository;
-import com.edureka.paymentservice.entity.Payment;
-import com.edureka.paymentservice.orders.entity.OrderItem;
-import com.edureka.paymentservice.orders.entity.Orders;
+import com.edureka.ecomm.Respository.PaymentRepository;
+import com.edureka.ecomm.entity.Orders;
+import com.edureka.ecomm.entity.Payment;
 
 
 @Service
@@ -72,6 +71,7 @@ public Payment getPayments(Long paymentId){
             // 4. Save final payment state
             Payment payment1= paymentRepository.save(payment);
             logger.info("Payment made success for order: " + orderResponse.getId());
+            //TODO to send to exchange for payment
           //  rabbitTemplate.convertAndSend(paymentExchange, paymenRoutineKey, payment1);
             return payment1;
         }
@@ -79,9 +79,9 @@ public Payment getPayments(Long paymentId){
     }
 
     @KafkaListener(topics = "OrderPlaced", groupId = "order_group")
-    public void consumeOrder(OrderItem orderItem) {
-        logger.info("Consumed order items data product ID:" + orderItem.getProduct_id() + " ,quantity: " + orderItem.getQuantity());
-        processPayment(orderItem.getId(), orderItem.getPrice(),"CREDIT");
+    public void consumeOrder(Orders orderItem) {
+        logger.info("Consumed order data: ");
+        processPayment(orderItem.getId(), orderItem.getTotalAmount(), "CREDIT");
 
     }
 }

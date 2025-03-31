@@ -9,7 +9,8 @@ import lombok.ToString;
 @ToString
 public class Customer {
 
-    private Long id;
-    private String name;
+    private String id;
+    private String firstname;
+    private String lasttname;
 
 }

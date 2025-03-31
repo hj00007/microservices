@@ -13,7 +13,7 @@ public class Orders {
     private Long id;
 
      @Column
-    private Long customer_id;
+    private String customer_id;
 
     private String orderItems;
 
@@ -53,11 +53,11 @@ public class Orders {
         this.id = id;
     }
 
-    public Long getCustomer_id() {
+    public String getCustomer_id() {
         return customer_id;
     }
 
-    public void setCustomer_id(Long customer_id) {
+    public void setCustomer_id(String customer_id) {
         this.customer_id = customer_id;
     }
 

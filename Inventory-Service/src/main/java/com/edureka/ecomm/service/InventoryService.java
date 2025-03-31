@@ -86,7 +86,7 @@ public class InventoryService {
 	
 	@Transactional
     public void addOrUpdateInventoryForOrder(Long productId, Integer quantity) {
-        Product product = restTemplate.getForObject("http://product-container:8090/products/" + productId, Product.class);
+        Product product = restTemplate.getForObject("http://product-service/products/" + productId, Product.class);
         if(product == null ) {
         	//TODO: handle failure, send to order failure topic
         }

@@ -32,8 +32,9 @@ public class OrderService {
     private RestTemplate restTemplate;
 
     @Autowired
-    private  KafkaTemplate<String, Object> kafkaTemplate;
     private static final String TOPIC1 = "OrderPlaced";
+    @Autowired
+    private  KafkaTemplate<String, Object> kafkaTemplate;
     private static final String TOPIC2 = "OrderItemsPlaced";
     public List<Orders> getAllOrders() {
         return orderRepository.findAll();
@@ -46,7 +47,7 @@ public class OrderService {
 
     @Transactional
     public Orders createOrder(String customerId, OrderItem orderItem) {
-    	Customer customer = restTemplate.getForObject("http://customer-container:8091/customers/" + customerId, Customer.class);
+    	Customer customer = restTemplate.getForObject("http://CUSTOMER-SERVICE/api/v1/customers/" + customerId, Customer.class);
     	Orders orders = new Orders();
 
     	if(customer!=null) {
@@ -56,7 +57,7 @@ public class OrderService {
     	}
 
 
-    	Product product = restTemplate.getForObject("http://prodct-service/products/" + orderItem.getProduct_id(), Product.class);
+    	Product product = restTemplate.getForObject("http://PRODUCT-SERVICE/api/v1/products/" + orderItem.getProduct_id(), Product.class);
 
     	if(product ==null ) {
     		throw  new ResourceNotFoundException("Product id : "+orderItem.getProduct_id()+" not found");
@@ -77,7 +78,7 @@ public class OrderService {
         double totalAmount = 0.0;
 
 
-            Product product = restTemplate.getForObject("http://product-container:8090/products/" + updatedItem.getProduct_id(), Product.class);
+            Product product = restTemplate.getForObject("http://product-service/products/" + updatedItem.getProduct_id(), Product.class);
             if(product!=null) {
                 updatedItem.setPrice(product.getUnitPrice());
                 totalAmount += updatedItem.getQuantity() * product.getUnitPrice();
@@ -89,7 +90,7 @@ public class OrderService {
         order.setOrderItems(orderItem1.toString());
         order.setTotalAmount(totalAmount);
         Orders orders1= orderRepository.save(order);
-        //sendOrder(orders1);
+        sendOrder(orders1);
         sendOrderItems(orderItem1);
         logger.info("Order written into the topics {"+TOPIC1+","+TOPIC2+"}");
         return orders1;

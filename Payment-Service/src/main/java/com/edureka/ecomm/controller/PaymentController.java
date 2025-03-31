@@ -1,13 +1,13 @@
-package com.edureka.paymentservice.controller;
+package com.edureka.ecomm.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.edureka.paymentservice.OrderNotFoundException.ResourceNotFoundException;
-import com.edureka.paymentservice.entity.Payment;
-import com.edureka.paymentservice.service.PaymentService;
+import com.edureka.ecomm.OrderNotFoundException.ResourceNotFoundException;
+import com.edureka.ecomm.entity.Payment;
+import com.edureka.ecomm.service.PaymentService;
 
 import java.util.List;
 

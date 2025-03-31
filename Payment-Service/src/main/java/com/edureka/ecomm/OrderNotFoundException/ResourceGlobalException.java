@@ -1,4 +1,4 @@
-package com.edureka.paymentservice.OrderNotFoundException;
+package com.edureka.ecomm.OrderNotFoundException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

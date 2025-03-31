@@ -1,4 +1,4 @@
-package com.edureka.paymentservice.orders.entity;
+package com.edureka.ecomm.entity;
 
 import java.time.LocalDate;
 
