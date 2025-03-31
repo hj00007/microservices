@@ -110,4 +110,8 @@ public class OrderService {
         kafkaTemplate.send(TOPIC2, message);
     }
 
+	public List<Orders> getOrderByCustomerId(String customerId) {
+		 return orderRepository.findOrdersByCustomerId(customerId);
+	}
+
 }

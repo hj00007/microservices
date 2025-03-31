@@ -37,7 +37,12 @@ public class OrderController {
         Orders createdOrder = orderService.createOrder(customerId, orderItems);
         return ResponseEntity.ok(createdOrder);
     }
-
+    
+    @GetMapping("/customer/{customerId}")
+    public ResponseEntity<List<Orders>> getOrderByCustomerId(@PathVariable String customerId) {
+        List<Orders> createdOrder = orderService.getOrderByCustomerId(customerId);
+        return ResponseEntity.ok(createdOrder);
+    }
     @PutMapping("/{id}")
     public ResponseEntity<Orders> updateOrder(@PathVariable Long id, @RequestBody OrderItem updatedItem) {
         Orders updatedOrder = orderService.updateOrder(id, updatedItem);

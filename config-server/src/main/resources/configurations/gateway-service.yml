@@ -31,6 +31,10 @@ spring:
           uri: lb:http://PAYMENT-SERVICE
           predicates:
             - Path=/api/v1/payments/**   
+        - id: sub-service
+          uri: lb:http://SUB-SERVICE
+          predicates:
+            - Path=/api/v1/subservice/**
             
 zipkin:
   baseUrl: http://localhost:9411
