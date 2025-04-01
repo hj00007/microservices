@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -21,6 +22,7 @@ public class SubService {
 
     private final WebClient webClient = WebClient.create();
     
+    @CircuitBreaker(name = "dashboardService", fallbackMethod = "dashboardServiceFallback")
 	public  Mono<Map<String, Object>> getDashboardData(String userId) {
 
         Mono<String> orderHistory = webClient.get()
@@ -43,6 +45,10 @@ public class SubService {
     
 	}
 
+    // Fallback method
+    public String dashboardServiceFallback(String userId, Throwable throwable) {
+        return "Dashboard service is currently unavailable for user ID: " + userId;
+    }
 
 	    
 

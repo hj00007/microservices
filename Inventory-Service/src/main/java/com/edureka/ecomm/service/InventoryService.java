@@ -46,7 +46,7 @@ public class InventoryService {
 	public Inventory addOrUpdateInventory(Long productId, Integer quantity) {
 		Product product = null;
 		//TODO after product service
-		product = restTemplate.getForObject("http://prodct-service/products/" + productId, Product.class);
+		product = restTemplate.getForObject("http://PRODUCT-SERVICE/api/v1/products/" + productId, Product.class);
 		if (product == null) {
 			throw new ResourceNotFoundException("Product id :" + productId + " not found");
 		}
@@ -71,7 +71,7 @@ public class InventoryService {
 		inventoryRepository.delete(inventory);
 	}
 
-	@KafkaListener(topics = "OrderItemsPlaced", groupId = "order_group")
+	@KafkaListener(topics = "OrderItemsPlaced", groupId = "inventory_group")
 	public void consumeOrder(OrderItem orderItem) {
 		logger.info("Consumed order items data product ID:" + orderItem.getProduct_id() + " ,quantity: "
 				+ orderItem.getQuantity());
@@ -86,7 +86,7 @@ public class InventoryService {
 	
 	@Transactional
     public void addOrUpdateInventoryForOrder(Long productId, Integer quantity) {
-        Product product = restTemplate.getForObject("http://product-service/products/" + productId, Product.class);
+        Product product = restTemplate.getForObject("http://PRODUCT-SERVICE/api/v1/products/" + productId, Product.class);
         if(product == null ) {
         	//TODO: handle failure, send to order failure topic
         }

@@ -71,14 +71,17 @@ public Payment getPayments(Long paymentId){
             // 4. Save final payment state
             Payment payment1= paymentRepository.save(payment);
             logger.info("Payment made success for order: " + orderResponse.getId());
+          
             //TODO to send to exchange for payment
-          //  rabbitTemplate.convertAndSend(paymentExchange, paymenRoutineKey, payment1);
+          
+            //TODO in case of failure send to kafka for inventory modification
+            
             return payment1;
         }
            return null;
     }
 
-    @KafkaListener(topics = "OrderPlaced", groupId = "order_group")
+    @KafkaListener(topics = "OrderPlaced", groupId = "payment_group")
     public void consumeOrder(Orders orderItem) {
         logger.info("Consumed order data: ");
         processPayment(orderItem.getId(), orderItem.getTotalAmount(), "CREDIT");
